@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, inject, signal} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {Header} from './layout/header/header';
+import {filter} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,23 @@ import {Header} from './layout/header/header';
   styleUrl: './app.scss'
 })
 export class App {
-  protected title = 'frontend';
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+
+  showHeader = signal<boolean>(true);
+
+
+  constructor() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      let route = this.activatedRoute;
+      while (route.firstChild) {
+        route = route.firstChild;
+      }
+
+      const data = route.snapshot.data;
+      this.showHeader.set(data?.['showHeader'] !== false);
+    });
+  }
 }
