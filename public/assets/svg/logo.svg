@@ -1,0 +1,28 @@
+<svg width="35" height="35" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg {
+      fill: #F3F4F6;
+    }
+
+    .node {
+      fill: #4F46E5;
+    }
+
+    .line {
+      stroke: #4F46E5;
+      stroke-width: 4;
+      stroke-linecap: round;
+    }
+  </style>
+
+  <rect width="64" height="64" rx="12" class="bg"/>
+
+  <line class="line" x1="16" y1="16" x2="32" y2="32"/>
+  <line class="line" x1="32" y1="32" x2="48" y2="16"/>
+  <line class="line" x1="32" y1="32" x2="32" y2="48"/>
+
+  <circle class="node" cx="16" cy="16" r="4"/>
+  <circle class="node" cx="32" cy="32" r="5"/>
+  <circle class="node" cx="48" cy="16" r="4"/>
+  <circle class="node" cx="32" cy="48" r="4"/>
+</svg>
