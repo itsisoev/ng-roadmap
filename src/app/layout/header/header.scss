@@ -1,0 +1,16 @@
+.header-container {
+  padding: 1rem 2rem;
+  background-color: var(--bg-dark-blue);
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+    }
+
+    .links {
+    }
+  }
+}
