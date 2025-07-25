@@ -30,4 +30,15 @@ button {
   &:hover {
     background-color: #9472f6;
   }
+
+  &:disabled {
+    background-color: #bfb9f9;
+    color: rgba(100, 100, 100, 0.7);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:disabled:hover {
+    background-color: #bfb9f9;
+  }
 }
