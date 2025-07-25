@@ -23,6 +23,16 @@
         margin: 0.375rem;
       }
     }
+
+    .buttons-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9375rem;
+
+      a {
+       text-align: right;
+      }
+    }
   }
 
   @media (max-width: 768px) {

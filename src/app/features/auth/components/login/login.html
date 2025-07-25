@@ -1,19 +1,52 @@
 <div class="auth-container">
-  <form class="auth-container__wrapper">
+  <form class="auth-container__wrapper" [formGroup]="authForm" (ngSubmit)="onSubmit()">
     <h2>Войти</h2>
 
     <div class="input-group">
       <label for="username">Имя пользователя</label>
-      <input type="text" class="custom-input" placeholder="Вводите имя пользователя...">
+      <input type="text" class="custom-input" placeholder="Вводите имя пользователя..." formControlName="username">
+      @if (authForm.controls.username.invalid && authForm.controls.username.touched) {
+        <div
+          class="error"
+        >
+          @if (authForm.controls.username.errors?.['required']) {
+            <small>
+              Имя обязательно
+            </small>
+          }
+        </div>
+      }
     </div>
 
     <div class="input-group">
       <label for="password">Пароль</label>
-      <input type="password" class="custom-input" placeholder="Вводите пароль...">
+      <input type="password" class="custom-input" placeholder="Вводите пароль..." formControlName="password">
+      @if (authForm.controls.password.invalid && authForm.controls.password.touched) {
+        <div class="error">
+          @if (authForm.controls.password.errors?.['required']) {
+            <small>
+              Пароль обязателен
+            </small>
+          }
+          @if (authForm.controls.password.errors?.['minlength']) {
+            <small>
+              Минимум {{ authForm.controls.password.errors?.['minlength'].requiredLength }} символа
+            </small>
+          }
+        </div>
+      }
     </div>
 
     <div class="buttons-group">
-      <button class="custom-button">Войти в аккаунт</button>
+      <button class="custom-button" type="submit" [disabled]="authForm.invalid">
+        @if (isLoading()) {
+          <uc-loader-spinner/>
+        } @else {
+          Войти в аккаунт
+        }
+      </button>
+      <a routerLink="/auth/register">У вас нет аккаунта ?</a>
     </div>
   </form>
 </div>
+<p-toast [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }"/>
